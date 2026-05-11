@@ -1,0 +1,196 @@
+:root {
+  --dark-pink: #e91e63;
+  --hot-pink: #ff1493;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #2a1a3d, #4a1a3d, #6b1a4a);
+  background-size: 400% 400%;
+  animation: gradientBG 25s ease infinite;
+  min-height: 100vh;
+  color: #fff;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 4.5rem;
+  background: linear-gradient(90deg, #ff9ec8, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.warning {
+  background: rgba(233, 30, 99, 0.2);
+  border: 2px solid var(--hot-pink);
+  color: #ffd1ff;
+  padding: 15px 30px;
+  border-radius: 50px;
+  margin: 25px auto;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.doors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 45px;
+  margin-top: 40px;
+}
+
+.door {
+  height: 520px;
+  background: linear-gradient(145deg, #3a1f2f, #2a1624);
+  border-radius: 18px 18px 8px 8px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  border: 8px solid #ffd1ff;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.7s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.door:hover:not(.locked) {
+  transform: translateY(-30px) scale(1.08) perspective(1000px) rotateX(8deg);
+}
+
+.door-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.door-icon {
+  font-size: 7.5rem;
+  margin-bottom: 20px;
+  transition: 0.6s;
+}
+.door:hover:not(.locked) .door-icon {
+  transform: scale(1.35) rotate(12deg);
+}
+
+.door-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffd1ff;
+  margin: 10px 0;
+}
+
+.nail-polish {
+  font-size: 3.2rem;
+  animation: nailPaint 2.3s infinite alternate;
+}
+@keyframes nailPaint {
+  from {
+    transform: rotate(-18deg);
+  }
+  to {
+    transform: rotate(18deg) scale(1.25);
+  }
+}
+
+.door.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.door.locked::after {
+  content: "🔒 Permanently Locked";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #ff9ec8;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1.25rem;
+  border: 2px solid #ff1493;
+}
+
+/* Beautiful Popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: linear-gradient(145deg, #fff0f5, #ffe4f0);
+  padding: 40px 50px;
+  border-radius: 30px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(233, 30, 99, 0.4);
+  border: 5px solid var(--hot-pink);
+}
+
+.popup-content h2 {
+  color: var(--dark-pink);
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.popup-content p {
+  color: #4a1a2f;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.popup-btn {
+  margin-top: 25px;
+  padding: 12px 40px;
+  background: var(--dark-pink);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}

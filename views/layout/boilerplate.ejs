@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dear Sister, I am Sorry</title>
+    <link rel="stylesheet" href="/css/anaya.css" />
+    <link rel="stylesheet" href="/css/me.css" />
+    <link rel="stylesheet" href="/css/meAudio.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+   <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Page Specific Styles -->
+  <% if (currentPage === 'anaya') { %>
+    <link rel="stylesheet" href="/css/anaya.css" />
+    <% } else if (currentPage === 'me') { %>
+    <link rel="stylesheet" href="/css/me.css" />
+  <% } else if (currentPage === 'meAudio') { %>
+    <link rel="stylesheet" href="/css/meAudio.css" />
+  <% } else if (currentPage === 'secret') { %>
+    <link rel="stylesheet" href="/css/secret.css" />
+  <% } else if (currentPage === 'reel') { %>
+    <link rel="stylesheet" href="/css/reel.css" />
+  <% } else if (currentPage === 'feedback') { %>
+    <link rel="stylesheet" href="/css/feedback.css" />
+  <% } else if (currentPage === 'seeme') { %>
+    <link rel="stylesheet" href="/css/seeme.css" />
+  <% } else if (currentPage === 'myfeeling') { %>
+    <link rel="stylesheet" href="/css/myfeeling.css" />
+  <% } else if (currentPage === 'thankyou') { %>
+    <link rel="stylesheet" href="/css/thankyou.css" />
+  <% } else if (currentPage === 'bhaiManogi') { %>
+    <link rel="stylesheet" href="/css/bhaiManogi.css" />
+  <% } else if (currentPage === 'effort') { %>
+    <link rel="stylesheet" href="/css/effort.css" />
+  <% } %>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  </head>
+  <body>
+    <%- body %>
+    <script src="/js/anaya.js"></script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+
+
+    <style>
+      :root {
+        --pink: #ff1493;
+        --soft-pink: #ffb3d1;
+        --dark-pink: #e91e63;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #ff9ec8, #ffc1e3, #e0bbff, #ff9ec8);
+        background-size: 400% 400%;
+        animation: gradientBG 25s ease infinite;
+        min-height: 100vh;
+        color: #4a1a2f;
+        position: relative;
+        overflow-y: auto;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .bg-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("/assets/videos/blessme.jpg") center/cover no-repeat;
+        filter: brightness(0.75) blur(3px);
+        z-index: -1;
+      }
+
+      .container {
+        position: relative;
+        z-index: 2;
+        max-width: 780px;
+        margin: 40px auto;
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 5rem;
+        color: var(--dark-pink);
+        text-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        margin-bottom: 20px;
+      }
+
+      .subtitle {
+        font-size: 1.8rem;
+        color: var(--pink);
+        margin-bottom: 40px;
+      }
+
+      .message-box {
+        background: rgba(255, 255, 255, 0.93);
+        padding: 45px 40px;
+        border-radius: 35px;
+        border: 6px dashed var(--pink);
+        text-align: left;
+        line-height: 1.9;
+        font-size: 1.25rem;
+        box-shadow: 0 20px 60px rgba(233, 30, 99, 0.3);
+        margin: 40px auto;
+      }
+
+      .form-section {
+        background: white;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(233, 30, 99, 0.25);
+        margin: 50px auto;
+      }
+
+      textarea {
+        width: 100%;
+        height: 140px;
+        padding: 20px;
+        border: 3px solid var(--soft-pink);
+        border-radius: 20px;
+        font-size: 1.1rem;
+      }
+
+      .send-btn {
+        margin-top: 15px;
+        padding: 16px 50px;
+        background: linear-gradient(45deg, var(--dark-pink), var(--pink));
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.3rem;
+        cursor: pointer;
+      }
+
+      .love-btn {
+        margin-top: 30px;
+        padding: 18px 70px;
+        background: linear-gradient(45deg, #4a1a2f, #6b1a4a);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .music-player {
+        bottom: 20px;
+        background: white;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-image"></div>
+    <div class="floating-elements" id="floating"></div>
+
+    <div class="container">
+      <h1>Thank You My Princess 💖</h1>
+      <p class="subtitle">Tumne mera din bana diya ✨</p>
+
+      <div class="message-box">
+        <p>
+          Sach mein bahut bahut thank you behen.<br /><br />
+          Tumhare saath baat karke mujhe ek alag hi sukoon milta hai.<br />
+          Chahe tum mujhe bhai mano ya na mano, main hamesha tumhara bhai ban ke
+          rahunga.<br /><br />
+          Tum khush raho, hamesha hassti raho — yahi meri dua hai.<br />
+          Aur haan... kabhi bhi dil mein kuch ho toh bina soch ke mujhe bata
+          dena.<br />
+          Main hamesha tumhare liye available rahunga 💕
+        </p>
+      </div>
+
+      
+
+      <!-- Message Form -->
+      <div class="form-section">
+        <h2 style="color: var(--dark-pink)">
+          Tume Jo Bhi Puchna Hai Wo Tum Puch Sakti Ho
+        </h2>
+        <p style="color: var(--pink); margin: 15px 0">
+          Multiple messages bhej sakti ho ek ke baad ek 💌
+        </p>
+
+        <form action="/ishh/final-msg" method="POST">
+          <textarea
+            name="message"
+            placeholder="Bhaiya, yahan apni baat likho..."
+            required
+          ></textarea
+          ><br />
+          <button type="submit" class="send-btn">Send Message 💖</button>
+        </form>
+      </div>
+
+      <button onclick="finalLove()" class="love-btn">Love You Bhaiya 💕</button>
+      <!-- Music Player at Bottom -->
+       <br><br><br><br><br><br> 
+      <div class="music-player">
+        <audio id="myAudio" controls autoplay loop>
+          <source src="/assets/tere-saath.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+    </div>
+
+    <script>
+      // Autoplay Music
+      window.addEventListener("load", () => {
+        document
+          .getElementById("myAudio")
+          .play()
+          .catch(() => {});
+      });
+
+      function finalLove() {
+        alert("💖 Love You Too My Princess! Hamesha Khush Rahna 🌸");
+        window.location.href = "/ishh/end"; // or wherever you want to end
+      }
+
+      // Floating Animation
+      function createFloating() {
+        const span = document.createElement("span");
+        span.textContent = ["💖", "🌸", "✨", "👑", "💕"][
+          Math.floor(Math.random() * 5)
+        ];
+        span.style.position = "absolute";
+        span.style.left = Math.random() * 100 + "%";
+        span.style.fontSize = Math.random() * 2 + 2.2 + "rem";
+        span.style.animation = `floatUp ${Math.random() * 10 + 12}s linear infinite`;
+        span.style.opacity = 0.8;
+        document.getElementById("floating").appendChild(span);
+        setTimeout(() => span.remove(), 35000);
+      }
+
+      setInterval(createFloating, 300);
+      for (let i = 0; i < 15; i++) setTimeout(createFloating, i * 200);
+
+      const style = document.createElement("style");
+      style.innerHTML = `@keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-120vh) rotate(720deg); } }`;
+      document.head.appendChild(style);
+    </script>
+

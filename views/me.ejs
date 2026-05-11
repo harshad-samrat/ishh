@@ -1,0 +1,120 @@
+<div class="floating-elements" id="floating"></div>
+
+<div class="container">
+  <h1>Choose One Door, Princess 👑</h1>
+
+  <div class="warning" id="warning">⚠️ Sirf ek hi darwaza khul sakta hai</div>
+
+  <div class="doors-grid" id="doorsGrid">
+    <a href="/ishh/me/audio?door=1" class="door" id="door1">
+      <div class="door-content">
+        <div class="door-icon">💖</div>
+        <div class="door-title">Dil Ka Darwaza</div>
+        <span class="nail-polish">💅</span>
+      </div>
+    </a>
+
+    <a href="/ishh/me/audio?door=2" class="door" id="door2">
+      <div class="door-content">
+        <div class="door-icon">🧠</div>
+        <div class="door-title">Dimag Ka Darwaza</div>
+        <span class="nail-polish">💅</span>
+      </div>
+    </a>
+
+    <a href="/ishh/me/audio?door=3" class="door" id="door3">
+      <div class="door-content">
+        <div class="door-icon">✨</div>
+        <div class="door-title">Rooh Ka Darwaza</div>
+        <span class="nail-polish">💅</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- Custom Popup -->
+<div class="popup" id="errorPopup">
+  <div class="popup-content">
+    <h2>💖 Princess...</h2>
+    <p>
+      Tumne already ek darwaza choose kar liya hai.<br /><br />
+      Ab dusra darwaza nahi khul sakta.<br />
+      Yeh rishta ek baar hi choose hota hai.
+    </p>
+    <button class="popup-btn" onclick="closePopup()">Samajh Gaya 👑</button>
+  </div>
+</div>
+
+<script>
+  let chosenDoor = localStorage.getItem("chosenDoor");
+
+  // Floating Animation
+  function createFloating() {
+    const span = document.createElement("span");
+    span.textContent = ["💖", "🌸", "💅", "✨", "👑"][
+      Math.floor(Math.random() * 5)
+    ];
+    span.style.position = "absolute";
+    span.style.left = Math.random() * 100 + "%";
+    span.style.fontSize = Math.random() * 2 + 2 + "rem";
+    span.style.animation = `floatUp ${Math.random() * 9 + 11}s linear infinite`;
+    span.style.opacity = 0.75;
+    document.getElementById("floating").appendChild(span);
+    setTimeout(() => span.remove(), 30000);
+  }
+
+  setInterval(createFloating, 280);
+  for (let i = 0; i < 12; i++) setTimeout(createFloating, i * 200);
+
+  // Handle Door Click
+  document.querySelectorAll(".door").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const doorNum = parseInt(this.id.replace("door", ""));
+
+      if (chosenDoor && chosenDoor != doorNum) {
+        e.preventDefault();
+        document.getElementById("errorPopup").style.display = "flex";
+      } else if (!chosenDoor) {
+        chosenDoor = doorNum;
+        localStorage.setItem("chosenDoor", doorNum);
+
+        document.getElementById("warning").style.display = "none";
+
+        // Lock other doors
+        document.querySelectorAll(".door").forEach((d) => {
+          if (d.id !== `door${doorNum}`) {
+            d.classList.add("locked");
+            d.style.pointerEvents = "none";
+          }
+        });
+      }
+    });
+  });
+
+  function closePopup() {
+    document.getElementById("errorPopup").style.display = "none";
+  }
+
+  // Restore locked state on load
+  window.onload = () => {
+    if (chosenDoor) {
+      document.getElementById("warning").style.display = "none";
+      document.querySelectorAll(".door").forEach((door) => {
+        if (door.id !== `door${chosenDoor}`) {
+          door.classList.add("locked");
+          door.style.pointerEvents = "none";
+        }
+      });
+    }
+  };
+
+  // Reset for testing (Press R)
+  document.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() === "r") {
+      if (confirm("Reset all doors?")) {
+        localStorage.removeItem("chosenDoor");
+        location.reload();
+      }
+    }
+  });
+</script>

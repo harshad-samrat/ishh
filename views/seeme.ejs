@@ -1,0 +1,329 @@
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    padding: 50px;
+    background: #1a1a2e;
+    color: white;
+  }
+  .success {
+    color: #4ade80;
+    font-size: 1.5rem;
+  }
+</style>
+<div class="floating" id="floating"></div>
+
+<div class="container">
+  <h1>My Memories for You 💖</h1>
+
+  <!-- Photos Section -->
+  <div class="section">
+    <h2 class="section-title">📸 My Photos</h2>
+    <div class="cards-grid" id="photosGrid"></div>
+  </div>
+
+  <!-- Videos Section -->
+  <div class="section">
+    <h2 class="section-title">🎥 My Videos</h2>
+    <div class="cards-grid" id="videosGrid"></div>
+  </div>
+
+  <!-- Audios Section -->
+  <div class="section">
+    <h2 class="section-title">🎙️ My Voice Notes</h2>
+    <div class="cards-grid" id="audiosGrid"></div>
+  </div>
+  <h1>You can send your image here to meee siso</h1>
+  <p>tum multiple images bhej sakte ho..! darling</p>
+
+  <div class="image">
+    <form
+      action="/ishh/upload-memory"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <textarea name="note" placeholder="Add a note..."></textarea><br /><br />
+      <input type="file" name="image" accept="image/*" required /><br /><br />
+      <button type="submit">add image</button>
+    </form>
+  </div>
+  <!-- Fun Dual Buttons -->
+  <div class="final-buttons">
+    <button class="btn-fun" id="boreBtn">Bore ho gyi princess 😴</button>
+
+    <button class="btn-next" onclick="window.location.href = '/ishh/myfeeling'">
+      Nhi mere pyare bhaiya, bore nhi hue<br />
+      Aage chlo... mujhe toh maza aa rha hai 💖
+    </button>
+  </div>
+</div>
+
+<script>
+  // Floating Animation
+  function createFloating() {
+    const emojis = ["💖", "❤️", "🌸", "🦋", "✨", "💕", "👑"];
+    const span = document.createElement("span");
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    span.style.position = "absolute";
+    span.style.left = Math.random() * 100 + "%";
+    span.style.bottom = "-60px";
+    span.style.fontSize = Math.random() * 2.8 + 2.2 + "rem";
+    span.style.opacity = Math.random() * 0.8 + 0.6;
+    span.style.animation = `floatUp ${Math.random() * 14 + 16}s linear forwards`;
+    document.getElementById("floating").appendChild(span);
+    setTimeout(() => span.remove(), 50000);
+  }
+
+  window.onload = () => {
+    for (let i = 0; i < 18; i++) setTimeout(createFloating, i * 200);
+    setInterval(createFloating, 400);
+    renderPhotos();
+    renderVideos();
+    renderAudios();
+  };
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+      @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); }
+        100% { transform: translateY(-130vh) rotate(35deg); opacity: 0; }
+      }
+
+      .flip-card-back {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .flip-card-back img,
+      .flip-card-back video {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 18px;
+        margin-bottom: 15px;
+      }
+
+      .note {
+        margin-top: auto;
+        font-size: 1.18rem;
+        color: var(--hot-pink);
+        font-style: italic;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* ============== GIRLY AUDIO PLAYER ============== */
+      .audio-player {
+        background: linear-gradient(145deg, #fff0f5, #ffe4f0);
+        padding: 25px 20px;
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(233, 30, 99, 0.25);
+        text-align: center;
+        border: 3px solid var(--soft-pink);
+        margin: 25px auto;
+        max-width: 380px;
+      }
+
+      .audio-player h3 {
+        color: var(--hot-pink);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+      }
+
+      .audio-player audio {
+        width: 100%;
+        border-radius: 15px;
+        background: white;
+      }
+
+      .audio-player audio::-webkit-media-controls-panel {
+        background: rgba(255, 240, 245, 0.9);
+      }
+    `;
+  document.head.appendChild(style);
+  // Disable right click
+  document.addEventListener("contextmenu", (e) => {
+    if (
+      e.target.tagName === "IMG" ||
+      e.target.tagName === "VIDEO" ||
+      e.target.tagName === "AUDIO"
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // ================== PHOTOS WITH CUSTOM NOTES ==================
+  const photos = [
+    {
+      src: "/assets/mypic/pic/digvijay.jpg",
+      note: "Aisa toh bilkul nahi dikhta main 😂",
+    },
+    {
+      src: "/assets/mypic/pic/digvijay-gf.jpg",
+      note: "Verna meri bhi aisi GF hoti 😌",
+    },
+    { src: "/assets/mypic/pic/1.jpg", note: "😂😂😂😂" },
+    { src: "/assets/mypic/pic/2.jpg", note: "...." },
+    { src: "/assets/mypic/pic/3.jpg", note: "...." },
+    { src: "/assets/mypic/pic/4.jpg", note: "...." },
+    {
+      src: "/assets/mypic/pic/5.jpg",
+      note: "Freshers (Mr.Fresher) rolla hai bhai ka😍",
+    },
+    { src: "/assets/mypic/pic/6.jpg", note: "looks smart" },
+    { src: "/assets/mypic/pic/7.jpg", note: "tu scooty chala..." },
+    {
+      src: "/assets/mypic/pic/8.jpg",
+      note: "shayad tumko mein pasand aa gya 😍😂",
+    },
+    {
+      src: "/assets/mypic/pic/9.jpg",
+      note: "Ayyy hyyy , kya chij hu me toh .... 😘👌",
+    },
+    {
+      src: "/assets/mypic/pic/10.jpg",
+      note: "aise ghumte hai.. frnd app chodo aur ghumo firo shaddi se pehle",
+    },
+    { src: "/assets/mypic/pic/11.jpg", note: "...." },
+    { src: "/assets/mypic/pic/12.jpg", note: "5 saal purana ghr hai mera" },
+    { src: "/assets/mypic/pic/13.jpg", note: "one of best clicks" },
+    {
+      src: "/assets/mypic/pic/14.jpg",
+      note: "1st Rank in 12th board , rolla hai bhai ka shehar mein.. ladliiiii",
+    },
+    {
+      src: "/assets/mypic/pic/15.jpg",
+      note: "Tumein chappal marke ka kafi shaouk hai na , kharid lo yaha se🩴",
+    },
+    { src: "/assets/mypic/pic/16.jpg", note: "chin tapak dm dm" },
+    { src: "/assets/mypic/pic/17.jpg", note: "Level sabke niklenge..🤓" },
+    { src: "/assets/mypic/pic/18.jpg", note: "najar mt laga pagli..🤞☺️" },
+    { src: "/assets/mypic/pic/19.jpg", note: "...." },
+    { src: "/assets/mypic/pic/20.jpg", note: "best click by me ..📸" },
+    { src: "/assets/mypic/pic/21.jpg", note: "...." },
+    { src: "/assets/mypic/pic/22.jpg", note: "best click by me ..📸" },
+    {
+      src: "/assets/mypic/pic/23.jpg",
+      note: "bhai toh bachpan se hi hot hai..💖",
+    },
+    { src: "/assets/mypic/pic/24.jpg", note: "best click again .. 🙏" },
+    { src: "/assets/mypic/pic/25.jpg", note: "rolla hai bhai ka...😎😎😎" },
+    { src: "/assets/mypic/pic/26.jpg", note: "...." },
+    { src: "/assets/mypic/pic/27.jpg", note: "...." },
+    { src: "/assets/mypic/pic/28.jpg", note: "...." },
+    { src: "/assets/mypic/pic/29.jpg", note: "...." },
+    {
+      src: "/assets/mypic/pic/30.jpg",
+      note: "areyyy , ghur mt aage bd....😂😂😂😂\n aise hote hai chapri log",
+    },
+    { src: "/assets/mypic/pic/31.jpg", note: "...." },
+    { src: "/assets/mypic/pic/32.jpg", note: "...." },
+    { src: "/assets/mypic/pic/33.jpg", note: "...." },
+    { src: "/assets/mypic/pic/34.jpg", note: "my room , astatic" },
+    { src: "/assets/mypic/pic/35.jpg", note: "...." },
+    { src: "/assets/mypic/pic/36.jpg", note: "...." },
+    {
+      src: "/assets/mypic/pic/37.jpg",
+      note: "my best drawing, my great-grandfather",
+    },
+    { src: "/assets/mypic/pic/38.jpg", note: "...." },
+    { src: "/assets/mypic/pic/39.jpg", note: "...." },
+    { src: "/assets/mypic/pic/40.jpg", note: "...." },
+    { src: "/assets/mypic/pic/41.jpg", note: "...." },
+    { src: "/assets/mypic/pic/42.jpg", note: "...." },
+    { src: "/assets/mypic/pic/43.jpg", note: "...." },
+  ];
+
+  function renderPhotos() {
+    const grid = document.getElementById("photosGrid");
+
+    photos.forEach((photo) => {
+      grid.innerHTML += `
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Click to Reveal</h3>
+              <i class="fas fa-lock" style="font-size: 4rem; color: #ccc;"></i>
+            </div>
+            <div class="flip-card-back">
+              <img src="${photo.src}" alt="Memory">
+              <p class="note">${photo.note}</p>
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+
+  // ================== VIDEOS ==================
+  const videos = [
+    {
+      num: 1,
+      note: "Frnd app chalane se kuch nhi hota behen, kaam bhi karna hota hai😂",
+    },
+    { num: 2, note: "Time pass💖" },
+    { num: 3, note: "🪈🪈🪈🪈🪈🪈" },
+    { num: 4, note: "gameing setup" },
+    { num: 5, note: "Drama king mode on 🎭" },
+    { num: 6, note: "chll... ab toh hasle..........." },
+    { num: 7, note: "hyyyyyyy✨" },
+  ];
+
+  function renderVideos() {
+    const grid = document.getElementById("videosGrid");
+
+    videos.forEach((video) => {
+      grid.innerHTML += `
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Video ${video.num}</h3>
+              <i class="fas fa-play-circle" style="font-size: 4rem; color: #ccc;"></i>
+            </div>
+            <div class="flip-card-back">
+              <video controls loop muted style="width:100%; height:380px; object-fit:cover; border-radius:18px;" 
+                     onplay="this.muted=false;">
+                <source src="/assets/mypic/video/${video.num}.mp4" type="video/mp4">
+              </video>
+              <p class="note">${video.note}</p>
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+
+  // ================== AUDIOS ==================
+  function renderAudios() {
+    const grid = document.getElementById("audiosGrid");
+    for (let i = 1; i <= 2; i++) {
+      grid.innerHTML += `
+        <div class="audio-player">
+          <h3>Voice Note ${i} 🎙️</h3>
+          <audio controls style="width:100%;">
+            <source src="/assets/mypic/audio/${i}.mp3" type="audio/mpeg">
+          </audio>
+        </div>`;
+    }
+  }
+  // Random Moving Button (Bore Button)
+  const boreBtn = document.getElementById("boreBtn");
+
+  boreBtn.addEventListener("mouseenter", () => {
+    const x = Math.random() * (window.innerWidth - 300);
+    const y = Math.random() * (window.innerHeight - 200);
+
+    boreBtn.style.position = "fixed";
+    boreBtn.style.left = x + "px";
+    boreBtn.style.top = y + "px";
+    boreBtn.style.transition = "all 0.6s ease";
+  });
+
+  // Optional: Make it move continuously on hover
+  boreBtn.addEventListener("mousemove", () => {
+    const x = Math.random() * (window.innerWidth - 300);
+    const y = Math.random() * (window.innerHeight - 200);
+    boreBtn.style.left = x + "px";
+    boreBtn.style.top = y + "px";
+  });
+</script>

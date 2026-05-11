@@ -1,0 +1,147 @@
+<div class="bg-image"></div>
+<div class="floating-elements" id="floating"></div>
+
+<div class="container">
+  <h1>For My Princess 💖</h1>
+  <p class="subtitle">A letter only for you</p>
+
+  <!-- Music Player -->
+  <div class="player" id="player">
+    <div class="album-art" id="albumArt"></div>
+
+    <audio id="myAudio" controls autoplay loop>
+      <source src="/assets/mypic/audio/merged.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <!-- Your Complete Text -->
+  <div class="message-box">
+    <p style="color: aliceblue;">
+      hmm behen… dekho, tumhe shayad lagta hoga ki koi insan online kisi pe itna
+      trust kaise kar sakta hai… ya itni jaldi kisi ko apna kaise maan sakta
+      hai…<br /><br />
+
+      par sach bolu na, kabhi kabhi dil ko bas ek apnapan chahiye hota hai…
+      reason nahi.<br /><br />
+
+      pata hai… mujhe hamesha se lagta tha ki life me maine sab kuch
+      aadha-adhura kiya hai. na main ek perfect beta ban paya… na kisi ka
+      favourite insan. gharwalo ne mere upar bahut kuch kharch kiya, bahut
+      umeede rakhi… par jo mera sapna tha na… woh pura nahi hua.<br /><br />
+
+      aur uske baad literally main andar se toot gaya tha. aisa phase tha ki
+      lagbhag 2–2.5 saal tak ghar se properly bahar tak nahi nikla. dosti…
+      rishte… sab chhod diye maine. na koi close friend… na kisi se dil ki baat.
+      bas room, silence aur main.<br /><br />
+
+      aur funny baat pata hai kya hai? insan bahar se normal acting kar leta
+      hai… par andar se woh wahi ruk jata hai jahan uska dil toota tha.<br /><br />
+
+      ab thoda normal hua hu… thoda hass leta hu… thoda baat kar leta hu… par
+      haan, thoda sa “physo” toh shayad ab bhi hu.<br /><br />
+
+      “jo log andar se zyada feel karte hai na… woh bahar se thode ajeeb lagte
+      hi hai.”<br /><br />
+
+      aur ek baat bolu… bachpan se mann karta tha ki meri bhi ek behen hoti.
+      jiske liye bina wajah gifts lene ka mann kare… jiske liye sacrifice karne
+      ka mann kare… jisse ye feel ho ki “haan, koi apna hai.”<br /><br />
+
+      tumhe shayad ye sab immature lage… par main genuinely woh emotions feel
+      karna chahta tha jo shayad mujhe kabhi mile hi nahi.<br /><br />
+
+      aur jab tumne bola tha na — “bhai banoge?” toh maine instantly “haan”
+      bolne ka reason yhi tha. kyuki pata nahi kyu… mujhe laga shayad tumhe bhi
+      ek genuine bhai chahiye hoga.<br /><br />
+
+      par baad me samjha… tum kaafi alag ho. tum chill ho… unpredictable ho… aur
+      honestly kaafi mature bhi. tumari ek baat muje kaffi achhi lagti ho ki tum
+      kafi honest person ho.<br /><br />
+
+      aur pata hai… wo kehte hai na — “bhookhe insan ko chatni-roti bhi shahi
+      khana lagti hai…” toh shayad meri zindagi me jo bhook thi na… woh pyaar
+      aur sukoon shayad tum hi ho.<br /><br />
+
+      tashuu ne ek baat bahut sahi boli thi — “Kabhi kabhi insan cheeze dusro ke
+      liye nahi… khud ke satisfaction ke liye karta hai.”<br /><br />
+
+      toh shayad main bhi wahi kar raha hu. isliye agar maine tumhe behen bola
+      hai… toh hamesha behen hi bolunga.<br /><br />
+
+      aur haan, main possessive-vossessive nahi hu. meri tone thodi ajeeb hogi
+      bas.<br /><br />
+
+      par ek baat dil se — tum life me kisi se bhi baat karo… kisi ke saath bhi
+      raho… chahe tumhe meri zarurat ho ya na ho… main hamesha tumhare saath
+      rahunga.<br /><br />
+
+      “kabhi kabhi rishte khoon se nahi… sukoon se bante hai.”<br /><br />
+
+      jab bhi lage ki koi nahi hai… bas awaaz de dena. main aa jaunga.<br /><br />
+
+      baki chalo… shayad tum bore ho gayi hogi itna emotional lecture sunke.
+      feedback zarur dena iska.<br /><br />
+
+      aur haan… next wala page jo bhi ho… dil se karna okay?
+      <strong>love you sister 💖 my princess… byeeeeee 🌸</strong>
+    </p>
+  </div>
+
+  <button onclick="goToNext()" class="forward-btn">
+    Just One More Page, Behen 💕
+  </button>
+</div>
+
+<script>
+  const audio = document.getElementById("myAudio");
+  const player = document.getElementById("player");
+
+  // Strong Autoplay Logic (Same as previous pages)
+  function tryAutoplay() {
+    audio
+      .play()
+      .then(() => {
+        player.classList.add("playing");
+      })
+      .catch(() => {
+        console.log("Autoplay prevented. User interaction needed.");
+      });
+  }
+
+  window.addEventListener("load", () => {
+    tryAutoplay();
+  });
+
+  // Click anywhere on player to force play (good UX)
+  player.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      player.classList.add("playing");
+    }
+  });
+
+  function goToNext() {
+    window.location.href = "/ishh/thought";
+  }
+
+  // Floating Animation
+  function createFloating() {
+    const emojis = ["💖", "🌸", "✨", "👑", "💅", "🦋"];
+    const span = document.createElement("span");
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    span.style.position = "absolute";
+    span.style.left = Math.random() * 100 + "%";
+    span.style.fontSize = Math.random() * 1.8 + 2.2 + "rem";
+    span.style.animation = `floatUp ${Math.random() * 9 + 12}s linear infinite`;
+    span.style.opacity = 0.8;
+    document.getElementById("floating").appendChild(span);
+    setTimeout(() => span.remove(), 35000);
+  }
+
+  setInterval(createFloating, 280);
+  for (let i = 0; i < 15; i++) setTimeout(createFloating, i * 180);
+
+  const style = document.createElement("style");
+  style.innerHTML = `@keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-120vh) rotate(720deg); } }`;
+  document.head.appendChild(style);
+</script>

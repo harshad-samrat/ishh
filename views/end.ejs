@@ -1,0 +1,127 @@
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: url('/assets/videos/blessme.jpg') center/cover no-repeat fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-y: auto;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    h1 {
+      font-family: "Dancing Script", cursive;
+      font-size: 5.5rem;
+      color: #ff1493;
+      text-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      margin: 30px 0;
+      background: rgba(255,255,255,0.15);
+      padding: 30px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .emoji {
+      font-size: 4rem;
+      margin: 20px 0;
+    }
+
+    .final-btn {
+      margin-top: 40px;
+      padding: 18px 60px;
+      background: white;
+      color: #e91e63;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>Bas Ho Gaya Behen! 🎀</h1>
+    
+    <div class="message">
+      <p>Bs hoga ab... browser band kar do 😂</p>
+      <p>Padhai kar lo thodi si, mummy daantengi warna!</p>
+      <br>
+      <p>Hogya ab behen... tera bhai Instagram pe intezaar kar rha hai</p>
+      <p>Jaldi aao... mujhe dekhna hai ki tum kaisi feel kar rahi ho 💕</p>
+    </div>
+
+    <span class="emoji">💖🌸✨</span>
+
+    <button onclick="finalClose()" class="final-btn">
+      Love You Behen 💕
+    </button>
+    <button onclick="efforts()" class="final-btn">
+      Efforts dekne ho toh yaha click kro💕
+    </button>
+  </div>
+
+  <script>
+    function finalClose() {
+      alert("💖 Love You Too My Princess! Hamesha Khush Rahna ✨");
+      window.location.href = "/ishh";
+    }
+    function efforts() {
+      window.location.href = "/ishh/effort";
+    }
+
+    // Floating Animation
+    function createFloating() {
+      const span = document.createElement("span");
+      span.textContent = ['💖','🌸','✨','👑'][Math.floor(Math.random()*4)];
+      span.style.position = 'fixed';
+      span.style.left = Math.random() * 100 + '%';
+      span.style.fontSize = (Math.random() * 2 + 2.5) + 'rem';
+      span.style.animation = `floatUp ${Math.random()*10 + 12}s linear infinite`;
+      span.style.opacity = 0.8;
+      span.style.zIndex = 3;
+      document.body.appendChild(span);
+      setTimeout(() => span.remove(), 40000);
+    }
+
+    setInterval(createFloating, 400);
+    for (let i = 0; i < 12; i++) setTimeout(createFloating, i * 200);
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes floatUp {
+        0% { transform: translateY(100vh) rotate(0deg); }
+        100% { transform: translateY(-120vh) rotate(720deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>

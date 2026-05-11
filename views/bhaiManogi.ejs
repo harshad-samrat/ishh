@@ -1,0 +1,178 @@
+
+  <style>
+    :root {
+      --pink: #ff1493;
+      --soft-pink: #ffb3d1;
+      --dark-pink: #e91e63;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ff9ec8, #ffc1e3, #e0bbff);
+      background-size: 400% 400%;
+      animation: gradientBG 25s ease infinite;
+      min-height: 100vh;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .bg-image {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('/assets/videos/blessme.jpg') center/cover no-repeat;
+      filter: brightness(0.75) blur(4px);
+      z-index: -1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 40px 25px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Dancing Script", cursive;
+      font-size: 4rem;
+      color: var(--dark-pink);
+      margin-bottom: 40px;
+      text-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .special-btn {
+      margin: 40px auto;
+      padding: 18px 60px;
+      background: linear-gradient(45deg, #8b5cf6, #c026d3);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+      transition: all 0.4s;
+    }
+
+    .special-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .image-container {
+      display: none;
+      margin: 40px auto;
+      max-width: 500px;
+    }
+
+    .best-image {
+      width: 100%;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(233, 30, 99, 0.5);
+      animation: popIn 1s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin: 60px 0 30px;
+    }
+
+    .btn {
+      padding: 22px 55px;
+      font-size: 1.6rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.1s ease;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      font-weight: 600;
+    }
+
+    .yes-btn { background: linear-gradient(45deg, #22c55e, #4ade80); color: white; }
+    .no-btn, .skip-btn { background: linear-gradient(45deg, #ef4444, #f87171); color: white; }
+
+    .skip-btn { margin-top: 20px; background: linear-gradient(45deg, #6b7280, #9ca3af); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-image"></div>
+  <div class="floating-elements" id="floating"></div>
+
+  <div class="container">
+    <!-- Special Button -->
+    <button class="special-btn" onclick="showBestMoment()">
+      Tume Bata Hai Mujhe Sabse Achha Feel Kab Hua? Click Karo Janna Hai Toh ✨
+    </button>
+    
+
+    <!-- Best Moment Image -->
+    <div class="image-container" id="bestImageContainer">
+      <img src="/assets/best.png" class="best-image" alt="Best Moment">
+    </div>
+<br>
+    <h1>Kya Tum Mujhe Apna Sage Bhai Jaisa Maanogi......? 💕</h1>
+
+    <div class="options">
+      <button class="btn yes-btn" onclick="selectYes()">Yes, Of Course 💖</button>
+      <button class="btn no-btn" id="noBtn" onmouseover="moveButton(this)">No 😔</button>
+    </div>
+
+    <button class="btn skip-btn" id="skipBtn" onmouseover="moveButton(this)">
+      Pareshan Mt Karo, Mujhe Nahi Batana
+    </button>
+  </div>
+
+  <script>
+    function showBestMoment() {
+      document.getElementById("bestImageContainer").style.display = "block";
+      document.getElementById("bestImageContainer").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function moveButton(btn) {
+    // Much farther movement
+    const x = Math.random() * 420 - 210;   // -210px to +210px
+    const y = Math.random() * 320 - 160;   // -160px to +160px
+    
+    btn.style.transition = "transform 0.5s ease";
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+    
+    moved++;
+    
+    // Optional: Make it even wilder after few hovers
+    if (moved > 6) {
+      btn.style.transition = "transform 0.01s ease";
+    }
+  }
+
+    function selectYes() {
+      fetch("/ishh/bhai-accept", { method: "POST" })
+        .then(() => {
+          alert("💖 Thank You Princess! Main bahut khush hu aaj ❤️");
+          window.location.href = "/ishh/thankyou";
+        });
+    }
+
+    // Floating Animation
+    function createFloating() {
+      const span = document.createElement("span");
+      span.textContent = ["💖","🌸","✨","👑","💕"][Math.floor(Math.random()*5)];
+      span.className = "floating";
+      span.style.left = Math.random() * 100 + "%";
+      span.style.animationDuration = (Math.random() * 8 + 10) + "s";
+      document.getElementById("floating").appendChild(span);
+      setTimeout(() => span.remove(), 28000);
+    }
+
+    setInterval(createFloating, 350);
+    for (let i = 0; i < 15; i++) setTimeout(createFloating, i * 180);
+  </script>

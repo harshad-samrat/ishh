@@ -1,0 +1,130 @@
+:root {
+  --pink: #ff1493;
+  --soft-pink: #ffb3d1;
+  --dark-pink: #e91e63;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ff9ec8, #ffc1e3, #e0bbff, #ff9ec8);
+  background-size: 400% 400%;
+  animation: gradientBG 25s ease infinite;
+  min-height: 100vh;
+  color: #4a1a2f;
+  overflow-y: auto;
+  position: relative;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/videos/blessme.jpg") center/cover no-repeat;
+  filter: brightness(0.7) blur(3px);
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 40px auto;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 4.5rem;
+  color: var(--dark-pink);
+  text-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--pink);
+  font-size: 1.6rem;
+  margin-bottom: 40px;
+}
+
+.message-box {
+  padding: 50px 45px;
+  border-radius: 35px;
+  border: 4px dashed var(--pink);
+  text-align: left;
+  line-height: 1.9;
+  font-size: 1.23rem;
+  margin-bottom: 60px;
+}
+
+.player {
+  padding: 40px 30px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(233, 30, 99, 0.25);
+  margin-bottom: 50px;
+}
+
+.album-art {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  background: url("/assets/videos/blessme.jpg") center/cover;
+  border: 12px solid white;
+  box-shadow: 0 20px 50px rgba(233, 30, 99, 0.4);
+  animation: rotate 30s linear infinite paused;
+}
+
+.playing .album-art {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+audio {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.forward-btn {
+  padding: 18px 70px;
+  background: linear-gradient(45deg, #4a1a2f, #6b1a4a);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s;
+}
+
+.forward-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+}

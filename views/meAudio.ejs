@@ -1,0 +1,131 @@
+<div class="floating-elements" id="floating"></div>
+
+<div class="container">
+  <div class="header">
+    <h1>My Sweet Princess 👑</h1>
+    <p class="subtitle">From your brother with endless love 💖</p>
+  </div>
+
+  <div class="icons">
+    💖 &nbsp; 💅 &nbsp; ☕ &nbsp; ✨ &nbsp; 🌸 &nbsp; 💅 &nbsp; 💖
+  </div>
+
+  <!-- Complete Long Message -->
+  <div class="big-message">
+    <p>
+      Pata nahi kyu, par mujhe tumse hamesha ek apnapan feel hua… ek behen wali
+      feeling. Shayad tumhe kabhi meri taraf se woh bond feel na hua ho, aur ho
+      sakta hai meri kuch baatein ya behaviour bhi tumhe ajeeb lage ho. Par jo
+      bhi tha, dil se mera intention hamesha saaf tha.<br /><br />
+
+      Mujhe pata hai rishte sirf bol dene se nahi bante. Time lagta hai, trust
+      lagta hai, feelings lagti hai. Aur trust especially kisi ladke par karna
+      easy nahi hota, ye baat main samajhta hu. Isliye maine kabhi force nahi
+      kiya ki tum mujhe bhai mano. Main bas naturally woh relation feel karta
+      hu.<br /><br />
+
+      Sach bolu toh kabhi kabhi bura zarur lagta hai… jab tum ignore karti ho,
+      avoid karti ho, ya aisa feel hota hai jaise meri koi importance hi nahi.
+      Main bhi insaan hu, mere paas bhi dil hai. Aur haan, mujhe ye bhi pata hai
+      ki shayad main tumhe zarurat se zyada attention deta hu.<br /><br />
+
+      Agar main chahta toh planning, tricks, ya fake behaviour use karke tumhare
+      saath ek “better image” bana leta. But tumhare saath main kabhi waise act
+      nahi karna chahta tha. Mujhe fake relation nahi chahiye tha. Isliye maine
+      hamesha dil se behave kiya, bina kisi game ke.<br /><br />
+
+      Aur ek baat clear karna chahta hu… agar tumhe kabhi bhi mere intentions ko
+      leke doubt hua ho, toh please woh galat hai. Main genuinely tumhe apni
+      behen maanta hu, aur hamesha wahi respect aur care rahegi.<br /><br />
+
+      Tum mujhe bhai mano ya na mano, woh tumhari feelings hai aur main uski
+      respect karta hu. Bas meri taraf se jo rishta hai, woh hamesha genuine
+      rahega. Aur kabhi bhi life me tumhe meri zarurat pade — main bina soche
+      tumhare saath rahunga.<br /><br />
+
+      Aaj nahi toh shayad kabhi future me tum meri feelings samjho… aur dil se
+      mujhe apna bhai mano. Mere liye wahi kaafi hoga.<br /><br />
+
+      <strong style="color: var(--dark-pink); font-size: 1.4rem">
+        I love you, behen. Hamesha se aur hamesha ke liye 💖
+      </strong>
+    </p>
+  </div>
+
+  <!-- Audio Player -->
+  <div class="audio-container">
+    <h3 style="color: var(--hot-pink); margin-bottom: 15px">
+      🎵 Dil Se Suno...
+    </h3>
+    <audio id="loveAudio" controls autoplay loop>
+      <source src="/assets/dil.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <!-- Message Form -->
+
+    <div class="form-section">
+      <h2 style="color: var(--dark-pink)">
+        💌 Tumhare Pyare Bhaiya ko Message Likho
+      </h2>
+      <p class="tip">Tum multiple messages bhej sakti ho one after one💖 tbhi niche wala button kaam krega</p>
+
+      <form id="msgForm" action="/ishh/msgtome" method="POST">
+        <textarea
+          name="message"
+          id="message"
+          placeholder="Bhaiya, dil ki baat likho yahan..."
+          required
+        ></textarea
+        ><br />
+        <button type="submit" class="send-btn">
+          Send Message to Bhaiya 💌
+        </button>
+      </form>
+    </div>
+
+    <button onclick="goForward()" class="forward-btn" id="forwardBtn">
+      Chlo Mere Pyare Bhaiya, Ab Aage Badhte Hai ✨
+    </button>
+  </div>
+
+  <script>
+    const hasSubmitted = <%= hasSubmittedMessage ? 'true' : 'false' %>;
+
+    // Floating Animation
+    function createFloating() {
+      const emojis = ["💖", "💅", "☕", "✨", "🌸", "🦋", "💗"];
+      const span = document.createElement("span");
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.position = "absolute";
+      span.style.left = Math.random() * 100 + "%";
+      span.style.fontSize = (Math.random() * 2.2 + 2.2) + "rem";
+      span.style.animation = `floatUp ${Math.random() * 10 + 12}s linear infinite`;
+      span.style.opacity = Math.random() * 0.75 + 0.6;
+      document.getElementById("floating").appendChild(span);
+      setTimeout(() => span.remove(), 35000);
+    }
+
+    setInterval(createFloating, 250);
+    for (let i = 0; i < 15; i++) setTimeout(createFloating, i * 180);
+
+    // Auto Play Audio
+    window.addEventListener("load", () => {
+      document.getElementById("loveAudio").play().catch(() => {});
+    });
+
+    function goForward() {
+      if (!hasSubmitted) {
+        alert("💖 Princess, pehle ek message toh bhejo apne bhaiya ko...\nBina message ke aage nahi ja sakte.");
+        return;
+      }
+      window.location.href = "/ishh/secret";
+    }
+
+
+    // Floating animation keyframe
+    const style = document.createElement("style");
+    style.innerHTML = `@keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-120vh) rotate(720deg); } }`;
+    document.head.appendChild(style);
+  </script>
+</div>

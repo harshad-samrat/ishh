@@ -1,0 +1,169 @@
+<!-- Floating Elements -->
+<div class="floating-elements" id="floating"></div>
+
+<header class="hero">
+  <div class="glass-card main-card">
+    <div class="header-image-container">
+      <img
+        src="/assets/ishh.png"
+        alt="Ishh Profile"
+        class="rectangular-profile"
+      />
+    </div>
+
+    <span class="crown">👑</span>
+    <p class="nickname">cutii PI ✨</p>
+    <h1>Hey My Princess! 🎀💖</h1>
+
+    <p>
+      You aren't just my sister — you're my built-in soulmate, my safe place, my
+      favorite human in the whole universe.
+    </p>
+
+    <div style="margin: 30px 0; font-size: 2.5rem">
+      💖 &nbsp; ✨ &nbsp; 🌸 &nbsp; 👑 &nbsp; 💕
+    </div>
+  </div>
+</header>
+
+<section class="reasons-section">
+  <h2 class="section-title">Why You’re My Everything</h2>
+
+  <div class="flip-scene">
+    <div class="flip-card-inner" id="cardInner">
+      <!-- FRONT -->
+      <div class="flip-front">
+        <div class="grid-container">
+          <div class="card">
+            <i
+              class="fas fa-magic"
+              style="
+                font-size: 3rem;
+                color: var(--hot-pink);
+                margin-bottom: 15px;
+              "
+            ></i>
+            <h3>Magic Girl</h3>
+            <p>
+              You turn every normal day into something beautiful just by being
+              you.
+            </p>
+          </div>
+          <div class="card">
+            <i
+              class="fas fa-shield-alt"
+              style="
+                font-size: 3rem;
+                color: var(--hot-pink);
+                margin-bottom: 15px;
+              "
+            ></i>
+            <h3>My Secret Keeper</h3>
+            <p>
+              The only person who knows all my chaos and still calls me her
+              favorite.
+            </p>
+          </div>
+          <div class="card">
+            <i
+              class="fas fa-gem"
+              style="
+                font-size: 3rem;
+                color: var(--hot-pink);
+                margin-bottom: 15px;
+              "
+            ></i>
+            <h3>Rare Diamond</h3>
+            <p>
+              Strong, fierce, kind, and absolutely irreplaceable. My baddie
+              princess.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div class="flip-back">
+        <div class="big-message-card">
+          <i
+            class="fas fa-heart"
+            style="font-size: 4rem; color: #ff1493; margin-bottom: 25px"
+          ></i>
+          <p style="font-size: 1.35rem; line-height: 1.8; max-width: 520px">
+            ye sb mein bol paaata agar tu meri real sister hoti...<br /><br />
+            Lekin dil se tu already meri behen hai. Forever.<br />
+            Thank you for being my home, my laughter, and my softest place.
+            <br /><br />
+            <span style="color: var(--hot-pink); font-size: 1.1rem"
+              >I love you more than all the stars in the sky combined 💖</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px">
+    <button class="btn-pink" onclick="flipTheCard()">
+      💌 Read My Heart Note
+    </button>
+  </div>
+</section>
+
+<div class="next-page" style="text-align: center; padding: 40px 20px">
+    <a href="/ishh/me"><del>click here agar tume kuch jannna ho to</del>
+    <p>click here muje hi kuch batana hai tume </p>
+<h3>jaldi click karo</h3></a>
+  </button>
+</div>
+
+<footer>
+  <p class="real-message">
+    Made with endless love by your <del style="color:blueviolet; font-size: 20px;">favorite (and only)</del> brother
+    💖<line-through></line-through>
+  </p>
+  <p style="margin-top: 15px; opacity: 0.8">
+    You deserve the whole world, Princess.
+  </p>
+</footer>
+
+<script>
+  // Floating hearts, sparkles & crowns
+  function createFloatingElement() {
+    const elements = ["💖", "🌸", "✨", "👑", "🍭", "🦋", "💗", "⭐"];
+    const floating = document.getElementById("floating");
+    const span = document.createElement("span");
+
+    span.textContent = elements[Math.floor(Math.random() * elements.length)];
+    span.style.left = Math.random() * 100 + "%";
+    span.style.animationDuration = Math.random() * 8 + 9 + "s";
+    span.style.fontSize = Math.random() * 1.4 + 1.8 + "rem";
+    span.style.opacity = Math.random() * 0.7 + 0.6;
+
+    floating.appendChild(span);
+
+    setTimeout(() => span.remove(), 20000);
+  }
+
+  // Create multiple floating elements
+  setInterval(createFloatingElement, 280);
+  for (let i = 0; i < 12; i++) {
+    setTimeout(createFloatingElement, i * 200);
+  }
+
+  // Flip Card
+  function flipTheCard() {
+    const card = document.getElementById("cardInner");
+    card.classList.toggle("is-flipped");
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  // Keyboard surprise
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "p" || e.key === "P") {
+      document.body.style.transition = "filter 0.6s";
+      document.body.style.filter = "hue-rotate(20deg) saturate(1.4)";
+      setTimeout(() => (document.body.style.filter = ""), 1200);
+    }
+  });
+</script>

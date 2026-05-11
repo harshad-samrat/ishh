@@ -1,0 +1,172 @@
+:root {
+  --dark-pink: #e91e63;
+  --hot-pink: #ff1493;
+  --soft-pink: #ffb3d1;
+  --glass: rgba(255, 255, 255, 0.95);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url("/assets/images/dreamy-bg.jpg") center/cover no-repeat fixed;
+  min-height: 100vh;
+  color: #4a1a2f;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.tagline {
+  text-align: center;
+  font-size: 1.45rem;
+  color: #ffd1e6;
+  margin-bottom: 50px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+  justify-items: center;
+}
+
+.reel-card {
+  background: var(--glass);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 320px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.reel-card:hover {
+  transform: translateY(-8px);
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #000;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.reel-info {
+  padding: 18px;
+}
+
+.reel-info h3 {
+  color: var(--dark-pink);
+  margin-bottom: 14px;
+}
+
+textarea {
+  width: 100%;
+  height: 85px;
+  padding: 14px;
+  border: 2.5px solid var(--soft-pink);
+  border-radius: 16px;
+  resize: vertical;
+  margin-bottom: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(45deg, var(--dark-pink), var(--hot-pink));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.success-msg {
+  color: #4caf50;
+  margin-top: 10px;
+  text-align: center;
+  display: none;
+}
+
+.floating {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.skip {
+  margin: 20px 0 40px; /* Adds space above the grid */
+  text-align: center; /* Aligns it to the right, common for 'Skip' actions */
+}
+
+.skip a {
+  text-decoration: none;
+}
+
+.skip button {
+  background: rgba(255, 255, 255, 0.15); /* Glass effect */
+  color: #fff;
+  padding: 10px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skip button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: var(--soft-pink);
+  transform: translateX(5px); /* Subtle nudge to the right */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Add a small arrow icon via CSS if you don't want to change HTML */
+.skip button::after {
+  content: "→";
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 600px) {
+  .skip {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}

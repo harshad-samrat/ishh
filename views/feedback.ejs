@@ -1,0 +1,209 @@
+<div class="floating" id="floating"></div>
+
+<div class="container">
+  <h1>What Do You Think About Me? 💖</h1>
+  <p class="tagline">Be honest meri jaan, I really want to know ❤️</p>
+  <h2>you can skip the question that you dont want to give answer</h2>
+  <P style="color: aliceblue"
+    >0-10 ke bich mein hi dena hoga vrna error aayega</P
+  >
+  <br /><br />
+
+  <form action="/ishh/feedback" method="POST">
+    <div class="card">
+      <h2
+        style="color: var(--dark-pink); text-align: center; margin-bottom: 25px"
+      >
+        Rate Me (0-10)
+      </h2>
+
+      <label>1. Maturity</label>
+      <input type="number" name="maturity" min="0" max="10" required />
+
+      <label>2. Honesty</label>
+      <input type="number" name="honesty" min="0" max="10" required />
+
+      <label>3. Love</label>
+      <input type="number" name="love" min="0" max="10" required />
+
+      <label>4. Care</label>
+      <input type="number" name="care" min="0" max="10" required />
+
+      <label>5. Trust Issues</label>
+      <input type="number" name="trustIssue" min="0" max="10" required />
+
+      <label>6. Understanding</label>
+      <input type="number" name="understanding" min="0" max="10" required />
+
+      <label>7. Communication</label>
+      <input type="number" name="communication" min="0" max="10" required />
+
+      <label>8. Support</label>
+      <input type="number" name="support" min="0" max="10" required />
+
+      <label>9. Respect</label>
+      <input type="number" name="respect" min="0" max="10" required />
+
+      <label>10. Overall Rating</label>
+      <input type="number" name="overallRating" min="0" max="10" required />
+    </div>
+
+    <div class="card">
+      <label>12. Kuch suggestions tum dena chahti ho:</label>
+      <textarea name="suggestions" placeholder="Type here..."></textarea>
+
+      <label>13. Aur koi baat jo tum mujhse kehna chahti ho:</label>
+      <textarea name="otherThings" placeholder="Type here..."></textarea>
+
+      <label>14. Tumhare dil mein mere liye kya feelings hain?</label>
+      <textarea name="feelings" placeholder="Dil se likho... 💕"></textarea>
+
+      <label>15. Tumhe mere mein kya pasand hai?</label>
+      <textarea name="whatILike" placeholder="Type here..."></textarea>
+
+      <label>16. What should I improve in myself?</label>
+      <textarea name="improveInMe" placeholder="Be honest..."></textarea>
+
+      <label>17. Tumhe mere mein kya pasand nahi hai?</label>
+      <textarea name="whatIDontLike" placeholder="Type here..."></textarea>
+
+      <label>Mere liye ek line jo dil se bolna chahe?</label>
+      <textarea name="oneLine" placeholder="Dil se ek line..."></textarea>
+
+      <label
+        >Agar tujhe mujhe ek advice deni ho life ke liye toh kya degi?</label
+      >
+      <textarea name="lifeAdvice" placeholder="Life advice..."></textarea>
+    </div>
+
+    <div class="card">
+      <h2
+        style="color: var(--dark-pink); text-align: center; margin-bottom: 20px"
+      >
+        Fun Questions 🎭
+      </h2>
+
+      <label>Main zyada Cute 😇 ya Annoying 😈 ?</label>
+      <input
+        type="text"
+        name="cuteOrAnnoying"
+        placeholder="Cute / Annoying"
+        style="margin-bottom: 15px"
+      />
+
+      <label>Smart 📚 ya Lucky 🍀 ?</label>
+      <input type="text" name="smartOrLucky" placeholder="Smart / Lucky" />
+
+      <label>Emotional 💖 ya Dramatic 🎬 ?</label>
+      <input
+        type="text"
+        name="emotionalOrDramatic"
+        placeholder="Emotional / Dramatic"
+      />
+
+      <label>Hero 🕶️ ya Clown 🤡 ?</label>
+      <input type="text" name="heroOrClown" placeholder="Hero / Clown" />
+
+      <label>Calm 🌊 ya Chaos 🌪️ ?</label>
+      <input type="text" name="calmOrChaos" placeholder="Calm / Chaos" />
+
+      <label>Introvert 🐼 ya Attention Seeker 🎤 ?</label>
+      <input
+        type="text"
+        name="introvertOrAttention"
+        placeholder="Introvert / Attention Seeker"
+      />
+
+      <label>Mature 🧠 ya Baccha 👶 ?</label>
+      <input type="text" name="matureOrBaccha" placeholder="Mature / Baccha" />
+
+      <label>Romantic 🌹 ya Cringe 😂 ?</label>
+      <input
+        type="text"
+        name="romanticOrCringe"
+        placeholder="Romantic / Cringe"
+      />
+
+      <label>Tujhe lagta hai meri female bestfriend hona risky hoga? 💀</label>
+      <input
+        type="text"
+        name="riskyBestfriend"
+        placeholder="Yes / No / Thoda risky 😅"
+      />
+
+      <label>Main zyada Jealous type hu ya Chill?</label>
+      <input type="text" name="jealousOrChill" placeholder="Jealous / Chill" />
+    </div>
+
+    <button type="submit">💌 Submit My Feelings</button>
+  </form>
+
+  <!-- Audio Player at the very last of the page -->
+  <div class="audio-container">
+    <h3 style="color: var(--hot-pink); margin-bottom: 15px; text-align: center">
+      🎵 Phoolon Ka Taaro Ka... Dil Se Suno 💖
+    </h3>
+    <audio id="loveAudio" controls loop>
+      <source src="/assets/music/phoolon-ka-taaro-ka.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+</div>
+
+<script>
+  // === SAME AUTO PLAY LOGIC AS meAudio PAGE ===
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("loveAudio");
+    audio.volume = 0.45;
+
+    audio.play().catch((err) => {
+      console.log("Autoplay blocked by browser:", err);
+    });
+  });
+
+  // Floating Animation
+  function createFloating() {
+    const emojis = ["💖", "❤️", "✨", "🌟", "💫", "🌸", "🦋", "💕"];
+    const span = document.createElement("span");
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    span.style.position = "absolute";
+    span.style.left = Math.random() * 100 + "%";
+    span.style.bottom = "-50px";
+    span.style.fontSize = Math.random() * 2.6 + 2.2 + "rem";
+    span.style.opacity = Math.random() * 0.75 + 0.6;
+    span.style.animation = `floatUp ${Math.random() * 13 + 15}s linear forwards`;
+    span.style.zIndex = "1";
+    document.getElementById("floating").appendChild(span);
+    setTimeout(() => span.remove(), 45000);
+  }
+
+  window.onload = () => {
+    for (let i = 0; i < 16; i++) setTimeout(createFloating, i * 220);
+    setInterval(createFloating, 500);
+  };
+
+  // Keyframes
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-130vh) rotate(30deg); opacity: 0; }
+    }
+
+    .audio-container {
+      background: rgba(255,255,255,0.9);
+      padding: 18px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 40px auto;
+      max-width: 380px;
+      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.25);
+      border: 2px solid var(--soft-pink);
+    }
+
+    .audio-container audio {
+      width: 100%;
+      max-width: 320px;
+    }
+  `;
+  document.head.appendChild(style);
+</script>

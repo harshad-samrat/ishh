@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>View Memory 💖</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+                  url('/assets/videos/blessme.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      border: 5px solid #ffb3d1;
+    }
+    h1 {
+      font-family: "Dancing Script", cursive;
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Saved Memory 💖</h1>
+  
+  <% if (memory && memory.image) { %>
+    <img src="/ishh/memory-image/<%= memory._id %>" alt="Memory">
+    <p style="margin-top: 30px; font-size: 1.3rem;">
+      <strong>Note:</strong> <%= memory.note || "No note added" %>
+    </p>
+  <% } else { %>
+    <h2>Image not found 😢</h2>
+  <% } %>
+</body>
+</html>
