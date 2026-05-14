@@ -279,7 +279,10 @@ app.post("/ishh/bhai-accept", async (req, res) => {
 });
 
 app.get("/ishh/thankyou", (req, res) => {
-  res.render("thankyou",{title: "Thank You, Princess! 🌟" ,currentPage:"thankyou"});
+  res.render("thankyou", {
+    title: "Thank You, Princess! 🌟",
+    currentPage: "thankyou",
+  });
 });
 
 app.post("/ishh/final-msg", async (req, res) => {
@@ -307,7 +310,12 @@ app.get("/ishh/effort", (req, res) => {
     currentPage: "effort",
   });
 });
-
+app.get("/ishh/endwithnote", (req, res) => {
+  res.render("endwithnote", {
+    title: "Our Journey Begins, Princess! 💖",
+    currentPage: "endwithnote",
+  });
+});
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
