@@ -334,7 +334,7 @@ process.on("unhandledRejection", (err) => {
   console.log("Unhandled Rejection:", err);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-// module.exports = app;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+module.exports = app;
