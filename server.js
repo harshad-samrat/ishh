@@ -48,14 +48,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/ishh", (req, res) => {
-  res.render("anaya", {
+  res.render("anaya.ejs", {
     title: "Hey My Princess! 🎀",
     currentPage: "anaya",
   });
 });
 
 app.get("/ishh/me", (req, res) => {
-  res.render("me", {
+  res.render("me.ejs", {
     title: "Choose One Door, Princess 👑",
     currentPage: "me",
   });
@@ -64,7 +64,7 @@ app.get("/ishh/me", (req, res) => {
 app.get("/ishh/me/audio", async (req, res) => {
   const messageCount = await sisterMessage.countDocuments(); // Better than exists({})
 
-  res.render("meAudio", {
+  res.render("meAudio.ejs", {
     title: "My Sweet Princess 💖",
     currentPage: "meAudio",
     hasSubmittedMessage: messageCount > 0,
@@ -87,7 +87,7 @@ app.post("/ishh/msgtome", (req, res) => {
 app.get("/ishh/secret", async (req, res) => {
   const messageCount = await SlashSecret.countDocuments();
 
-  res.render("secret", {
+  res.render("secret.ejs", {
     title: "Secret IDs 👀",
     currentPage: "secret",
     hasSubmittedMessage: messageCount > 0, // ← This was missing
@@ -109,7 +109,7 @@ app.get("/ishh/reels", async (req, res) => {
   try {
     const answers = await ReelAnswer.find({});
 
-    res.render("reel", {
+    res.render("reel.ejs", {
       title: "Special Reels for My Princess 💖",
       currentPage: "reel",
       hasAnswered: answers.length > 0,
@@ -118,7 +118,7 @@ app.get("/ishh/reels", async (req, res) => {
     console.error("Error fetching reel answers:", err);
 
     // Still render the page,   but with safe fallback
-    res.render("reel", {
+    res.render("reel.ejs", {
       title: "Special Reels for My Princess 💖",
       currentPage: "reel",
       hasAnswered: false, // safe default
@@ -151,7 +151,7 @@ app.post("/ishh/reels/answer", async (req, res) => {
 });
 
 app.get("/ishh/askme", (req, res) => {
-  res.render("askme", {
+  res.render("askme.ejs", {
     title: "Ask Me Anything, Princess! 🌟",
     currentPage: "askme",
   });
@@ -166,7 +166,7 @@ app.get("/ishh/feedback", (req, res) => {
 });
 
 app.get("/ishh/myfeeling", (req, res) => {
-  res.render("myfeeling", {
+  res.render("myfeeling.ejs", {
     title: "My Feelings for You, Princess! 💕",
     currentPage: "myfeeling",
   });
@@ -181,7 +181,7 @@ app.post("/ishh/feedback", async (req, res) => {
     const savedFeedback = await newFeedback.save();
 
     console.log("✅ Feedback Saved Successfully! ID:", savedFeedback._id);
-    res.render("pic", {
+    res.render("pic.ejs", {
       title: "Thank You for Your Feedback! 🌟",
       currentPage: "pic",
     }); // or send success message
@@ -197,7 +197,7 @@ app.post("/ishh/feedback", async (req, res) => {
 });
 
 app.get("/ishh/seeme", (req, res) => {
-  res.render("seeme", {
+  res.render("seeme.ejs", {
     title: "See Me, Princess! 👀",
     currentPage: "seeme",
   });
@@ -246,7 +246,7 @@ app.get("/ishh/memory-image/:id", async (req, res) => {
 app.get("/ishh/show-memory/:id", async (req, res) => {
   try {
     const memory = await Memory.findById(req.params.id);
-    res.render("show-image", {
+    res.render("show-image.ejs", {
       title: "Show Memory",
       currentPage: "show-image",
       memory,
@@ -257,7 +257,7 @@ app.get("/ishh/show-memory/:id", async (req, res) => {
 });
 
 app.get("/ishh/thought", (req, res) => {
-  res.render("bhaiManogi", {
+  res.render("bhaiManogi.ejs", {
     title: "Will You Be My Sister, Princess? 💖",
     currentPage: "bhaiManogi     ",
   });
@@ -279,7 +279,7 @@ app.post("/ishh/bhai-accept", async (req, res) => {
 });
 
 app.get("/ishh/thankyou", (req, res) => {
-  res.render("thankyou", {
+  res.render("thankyou.ejs", {
     title: "Thank You, Princess! 🌟",
     currentPage: "thankyou",
   });
@@ -295,7 +295,7 @@ app.post("/ishh/final-msg", async (req, res) => {
 });
 
 app.get("/ishh/end", (req, res) => {
-  res.render("end", {
+  res.render("end.ejs", {
     title: "Our Journey Begins, Princess! 💖",
     currentPage: "end",
   });
@@ -305,13 +305,13 @@ app.get("/favicon.ico", (req, res) => {
 });
 
 app.get("/ishh/effort", (req, res) => {
-  res.render("effort", {
+  res.render("effort.ejs", {
     title: "Efforts for My Princess 💕",
     currentPage: "effort",
   });
 });
 app.get("/ishh/endwithnote", (req, res) => {
-  res.render("endwithnote", {
+  res.render("endwithnote.ejs", {
     title: "Our Journey Begins, Princess! 💖",
     currentPage: "endwithnote",
   });
