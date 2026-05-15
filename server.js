@@ -180,26 +180,30 @@ app.get("/ishh/myfeeling", (req, res) => {
 
 // Handle Submission
 app.post("/ishh/feedback", async (req, res) => {
-  try {
-    console.log("📥 Received Feedback Data:", req.body); // ← For debugging
+  // try {
+  //   console.log("📥 Received Feedback Data:", req.body); // ← For debugging
 
-    const newFeedback = new Feedback(req.body);
-    const savedFeedback = await newFeedback.save();
+  //   const newFeedback = new Feedback(req.body);
+  //   const savedFeedback = await newFeedback.save();
 
-    console.log("✅ Feedback Saved Successfully! ID:", savedFeedback._id);
-    res.render("pic.ejs", {
-      title: "Thank You for Your Feedback! 🌟",
-      currentPage: "pic",
-    }); // or send success message
-  } catch (error) {
-    console.error("❌ Feedback Save Error:", error);
-    res.status(500).send(`
-      <h2 style="color:red; text-align:center; margin-top:50px;">
-        Something went wrong 💔<br><br>
-        Error: ${error.message}
-      </h2>
-    `);
-  }
+  //   console.log("✅ Feedback Saved Successfully! ID:", savedFeedback._id);
+  //   res.render("pic.ejs", {
+  //     title: "Thank You for Your Feedback! 🌟",
+  //     currentPage: "pic",
+  //   }); // or send success message
+  // } catch (error) {
+  //   console.error("❌ Feedback Save Error:", error);
+  //   res.status(500).send(`
+  //     <h2 style="color:red; text-align:center; margin-top:50px;">
+  //       Something went wrong 💔<br><br>
+  //       Error: ${error.message}
+  //     </h2>
+  //   `);
+  // }
+  res.render("pic.ejs", {
+    title: "Thank You for Your Feedback! 🌟",
+    currentPage: "pic",
+  });
 });
 
 app.get("/ishh/seeme", (req, res) => {
@@ -329,4 +333,8 @@ process.on("uncaughtException", (err) => {
 process.on("unhandledRejection", (err) => {
   console.log("Unhandled Rejection:", err);
 });
-module.exports = app;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+// module.exports = app;
