@@ -30,13 +30,9 @@ const ReelAnswer = require("./models/reel");
 const Feedback = require("./models/feedback");
 const { title } = require("process");
 mongoose
-  .connect(MONGO_URL, {
-    tls: true,
-    tlsAllowInvalidCertificates: true, // ← Temporary fix
-    // tlsAllowInvalidHostnames: true     // Uncomment if needed
-  })
-  .then(() => console.log("✅ Connected to MongoDB Atlas"))
-  .catch((err) => console.error("❌ MongoDB Error:", err));
+  .connect(MONGO_URL)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.log(err));
 
 // ====================== ROUTES ======================
 // Setup multer for single image
@@ -62,13 +58,23 @@ app.get("/ishh/me", (req, res) => {
 });
 
 app.get("/ishh/me/audio", async (req, res) => {
-  const messageCount = await sisterMessage.countDocuments(); // Better than exists({})
+  try {
+    const messageCount = await sisterMessage.countDocuments();
 
-  res.render("meAudio.ejs", {
-    title: "My Sweet Princess 💖",
-    currentPage: "meAudio",
-    hasSubmittedMessage: messageCount > 0,
-  });
+    res.render("meAudio.ejs", {
+      title: "My Sweet Princess 💖",
+      currentPage: "meAudio",
+      hasSubmittedMessage: messageCount > 0,
+    });
+  } catch (err) {
+    console.error("Audio Route Error:", err);
+
+    res.render("meAudio.ejs", {
+      title: "My Sweet Princess 💖",
+      currentPage: "meAudio",
+      hasSubmittedMessage: false,
+    });
+  }
 });
 
 app.post("/ishh/msgtome", (req, res) => {
@@ -316,6 +322,11 @@ app.get("/ishh/endwithnote", (req, res) => {
     currentPage: "endwithnote",
   });
 });
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+process.on("uncaughtException", (err) => {
+  console.log("Uncaught Exception:", err);
 });
+
+process.on("unhandledRejection", (err) => {
+  console.log("Unhandled Rejection:", err);
+});
+module.exports = app;
